@@ -1,11 +1,11 @@
-﻿@model IEnumerable<ExploreCalifornia.Models.Post>
+﻿@model IEnumerable<ExploreCalifornia.Models.Photo>
 @{ 
     Layout = "_SimpleLayout";
 }   
 <h1>Explorer's Gallery</h1>
 
 <p>
-    Here's a gallery.
+    Here's a gallery. THIS BITCH WORKS.
 </p>
 
 <p class="pager">
@@ -26,9 +26,9 @@
 </p>
 
 <div class="blog-posts">
-    @foreach (var post in Model)
+    @foreach (var photo in Model)
     {
-        @Html.Partial("_GalleryPost", post)
+        @Html.Partial("_GalleryPost", photo)
     }
 </div>
 

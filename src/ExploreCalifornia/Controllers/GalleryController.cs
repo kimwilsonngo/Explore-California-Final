@@ -13,9 +13,9 @@ namespace ExploreCalifornia.Controllers
     [Route("gallery")]
     public class GalleryController : Controller
     {
-        private readonly BlogDataContext _db;
+        private readonly PhotoDataContext _db;
 
-        public GalleryController(BlogDataContext db)
+        public GalleryController(PhotoDataContext db)
         {
             _db = db;
         }
@@ -24,7 +24,7 @@ namespace ExploreCalifornia.Controllers
         public IActionResult Index(int page = 0)
         {
             var pageSize = 2;
-            var totalPosts = _db.Posts.Count();
+            var totalPosts = _db.Photos.Count();
             var totalPages = totalPosts / pageSize;
             var previousPage = page - 1;
             var nextPage = page + 1;
@@ -35,8 +35,8 @@ namespace ExploreCalifornia.Controllers
             ViewBag.HasNextPage = nextPage < totalPages;
 
             var posts =
-                _db.Posts
-                    .OrderByDescending(x => x.Posted)
+                _db.Photos
+                //    .OrderByDescending(x => x.Posted)
                     .Skip(pageSize * page)
                     .Take(pageSize)
                     .ToArray();
@@ -50,8 +50,8 @@ namespace ExploreCalifornia.Controllers
         [Route("{year:min(2000)}/{month:range(1,12)}/{key}")]
         public IActionResult Post(int year, int month, string key)
         {
-            var post = _db.Posts.FirstOrDefault(x => x.Key == key);
-            return View(post);
+            var photo = _db.Photos.FirstOrDefault(x => x.Key == key);
+            return View(photo);
         }
 
         /*
