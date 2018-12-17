@@ -51,7 +51,13 @@ namespace ExploreCalifornia
                 var connectionString = configuration.GetConnectionString("SpecialsDataContext");
                 options.UseSqlServer(connectionString);
             });
-            
+
+            services.AddDbContext<PhotoDataContext>(options =>
+            {
+                var connectionString = configuration.GetConnectionString("PhotoDataContext");
+                options.UseSqlServer(connectionString);
+            });
+
 
             services.AddDbContext<IdentityDataContext>(options =>
             {
