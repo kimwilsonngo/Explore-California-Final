@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<ExploreCalifornia.Models.Photo>
-@{ 
-    Layout = "_SimpleLayout";
-}   
+
 <h1>Explorer's Gallery</h1>
 
 <p>
@@ -12,20 +10,20 @@
     <!-- check parameters-->
     @if (ViewBag.HasPreviousPage)
     {
-        <a class="prev" href="@Url.Action("GalleryIndex", "Gallery", new { page = ViewBag.PreviousPage })">
+        <a class="prev" href="@Url.Action("Index", "Gallery", new { page = ViewBag.PreviousPage })">
             &lt; Previous
         </a>
     }
 
     @if (ViewBag.HasNextPage)
     {
-        <a class="next" href="@Url.Action("GalleryIndex", "Gallery", new { page = ViewBag.NextPage })">
+        <a class="next" href="@Url.Action("Index", "Gallery", new { page = ViewBag.NextPage })">
             Next &gt;
         </a>
     }
 </p>
 
-<div class="blog-posts">
+<div class="photos">
     @foreach (var photo in Model)
     {
         @Html.Partial("_GalleryPost", photo)

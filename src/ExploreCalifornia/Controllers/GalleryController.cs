@@ -24,8 +24,8 @@ namespace ExploreCalifornia.Controllers
         public IActionResult Index(int page = 0)
         {
             var pageSize = 2;
-            var totalPosts = _db.Photos.Count();
-            var totalPages = totalPosts / pageSize;
+            var totalphotos = _db.Photos.Count();
+            var totalPages = totalphotos / pageSize;
             var previousPage = page - 1;
             var nextPage = page + 1;
 
@@ -34,7 +34,7 @@ namespace ExploreCalifornia.Controllers
             ViewBag.NextPage = nextPage;
             ViewBag.HasNextPage = nextPage < totalPages;
 
-            var posts =
+            var photos =
                 _db.Photos
                 //    .OrderByDescending(x => x.Posted)
                     .Skip(pageSize * page)
@@ -42,17 +42,19 @@ namespace ExploreCalifornia.Controllers
                     .ToArray();
 
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-                return PartialView(posts);
+                return PartialView(photos);
 
-            return View(posts);
+            return View(photos);
         }
 
-        [Route("{year:min(2000)}/{month:range(1,12)}/{key}")]
-        public IActionResult Post(int year, int month, string key)
+        
+        [Route("{filename}")]
+        public IActionResult photo(string filename)
         {
-            var photo = _db.Photos.FirstOrDefault(x => x.Key == key);
+            var photo = _db.Photos.FirstOrDefault(x => x.fileName == filename);
             return View(photo);
         }
+        
 
         /*
         [Authorize]
@@ -72,7 +74,7 @@ namespace ExploreCalifornia.Controllers
             post.Author = User.Identity.Name;
             post.Posted = DateTime.Now;
 
-            _db.Posts.Add(post);
+            _db.photos.Add(post);
             _db.SaveChanges();
 
             return RedirectToAction("Post", "Blog", new

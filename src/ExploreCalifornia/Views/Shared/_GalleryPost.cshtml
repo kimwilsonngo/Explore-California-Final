@@ -3,9 +3,9 @@
 
 <article class="blog-post">
     <!-- check parameters-->
-    <h1>@Html.ActionLink(Model.title, "Photo", "Gallery")</h1>
+    <h1>@Model.title</h1>
     <div class="content">
-       
+        <img src="/images/@(Model.fileName).jpg" alt="@Model.title" width="500" height="300">
     </div>
 
 </article>
