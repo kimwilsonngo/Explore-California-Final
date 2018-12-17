@@ -10,12 +10,12 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ExploreCalifornia.Controllers
 {
-    [Route("blog")]
-    public class BlogController : Controller
+    [Route("gallery")]
+    public class GalleryController : Controller
     {
         private readonly BlogDataContext _db;
 
-        public BlogController(BlogDataContext db)
+        public GalleryController(BlogDataContext db)
         {
             _db = db;
         }
@@ -54,7 +54,7 @@ namespace ExploreCalifornia.Controllers
             return View(post);
         }
 
-        
+        /*
         [Authorize]
         [HttpGet, Route("create")]
         public IActionResult Create()
@@ -82,6 +82,6 @@ namespace ExploreCalifornia.Controllers
                 key = post.Key
             });
         }
-        
+        */
     }
 }

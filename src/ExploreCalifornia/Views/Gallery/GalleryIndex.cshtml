@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ExploreCalifornia.Models.Post>
+@{ 
+    Layout = "_SimpleLayout";
+}   
+<h1>Explorer's Gallery</h1>
+
+<p>
+    Here's a gallery.
+</p>
+
+<p class="pager">
+    <!-- check parameters-->
+    @if (ViewBag.HasPreviousPage)
+    {
+        <a class="prev" href="@Url.Action("GalleryIndex", "Gallery", new { page = ViewBag.PreviousPage })">
+            &lt; Previous
+        </a>
+    }
+
+    @if (ViewBag.HasNextPage)
+    {
+        <a class="next" href="@Url.Action("GalleryIndex", "Gallery", new { page = ViewBag.NextPage })">
+            Next &gt;
+        </a>
+    }
+</p>
+
+<div class="blog-posts">
+    @foreach (var post in Model)
+    {
+        @Html.Partial("_GalleryPost", post)
+    }
+</div>
+

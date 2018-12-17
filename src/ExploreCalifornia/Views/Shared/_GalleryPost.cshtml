@@ -1,0 +1,11 @@
+﻿@inject ExploreCalifornia.Models.FormattingService Format
+@model ExploreCalifornia.Models.Post
+
+<article class="blog-post">
+    <!-- check parameters-->
+    <h1>@Html.ActionLink(Model.Title, "Post", "Gallery", new { year = Model.Posted.Year, month = Model.Posted.Month, key = Model.Key })</h1>
+    <div class="content">
+        @Model.Body
+    </div>
+
+</article>
